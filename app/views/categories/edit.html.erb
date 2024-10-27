@@ -1,0 +1,15 @@
+<!-- app/views/categories/edit.html.erb -->
+
+<h1>Edit Category</h1>
+
+<%= form_with model: @category, local: true do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name, required: true %>
+  </div>
+  <div>
+    <%= form.submit "Update Category" %>
+  </div>
+<% end %>
+
+<%= link_to 'Back to Categories', categories_path %>

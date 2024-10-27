@@ -1,0 +1,23 @@
+<!-- app/views/tasks/index.html.erb -->
+
+<h1>Todo List</h1>
+
+<%= form_with model: @task, url: tasks_path, local: true do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name, required: true %>
+  </div>
+  <div>
+    <%= form.submit "Create Task" %>
+  </div>
+<% end %>
+
+<h2>Incomplete Tasks</h2>
+<ul>
+  <% @tasks.each do |task| %>
+    <li>
+      <%= task.name %> - 
+      <%= link_to 'Mark as Complete', complete_task_path(task) %>
+    </li>
+  <% end %>
+</ul>

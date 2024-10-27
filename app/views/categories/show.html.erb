@@ -1,0 +1,24 @@
+<!-- app/views/categories/show.html.erb -->
+
+<h1><%= @category.name %></h1>
+
+<h2>Add a Task</h2>
+<%= form_with model: [@category, @task], local: true do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name, required: true %>
+  </div>
+  <%= form.submit "Create Task" %>
+<% end %>
+
+<h2>Incomplete Tasks</h2>
+<ul>
+  <% @tasks.each do |task| %>
+    <li>
+      <%= task.name %> - 
+      <%= link_to 'Mark as Complete', complete_task_path(task) %> | 
+      <%= link_to 'Edit', edit_task_path(task) %> | 
+      <%= link_to 'Delete', task_path(task), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </li>
+  <% end %>
+</ul>
